@@ -17,7 +17,7 @@ Questo strumento è particolarmente utile per generare report rapidi, cataloghi 
 - Librerie Python:
   - `python-docx`
   - `Pillow`
-  - `tkinter`
+  - `tkinter` (generalmente incluso con Python)
 
 ## Installazione
 
@@ -49,6 +49,10 @@ python concatenator.py
 
 6. Il file Word sarà salvato automaticamente nella cartella corrente, con un nome basato sul titolo del documento inserito.
 
+## Collaborazioni
+
+Questo progetto è stato sviluppato nell'ambito di una collaborazione con l'azienda **Selektra Italia S.r.l.** per supportare attività congiunte e ottimizzare la gestione e la reportistica delle immagini aziendali.
+
 ## Struttura del documento generato
 
 Il documento Word finale avrà una struttura organizzata in titoli (blocchi), e ciascun blocco sarà ulteriormente diviso per operatore, in base alle sigle riconosciute nei nomi delle immagini (TIM, W3, VF, Iliad).
@@ -67,4 +71,4 @@ Se hai problemi o suggerimenti, apri una issue nella sezione dedicata di GitHub.
 
 ## Licenza
 
-Questo progetto è rilasciato sotto la licenza MIT. Consulta il file [LICENSE](LICENSE) per ulteriori informazioni.
+Questo progetto è rilasciato sotto la licenza Apache 2.0. Consulta il file [LICENSE](LICENSE) per ulteriori informazioni.
