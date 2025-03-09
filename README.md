@@ -51,7 +51,7 @@ python concatenator.py
 
 ## Collaborazioni
 
-Questo progetto è stato sviluppato nell'ambito di una collaborazione con l'azienda **Selektra Italia S.r.l.** per supportare attività congiunte e ottimizzare la gestione e la reportistica delle immagini aziendali.
+Questo progetto è stato sviluppato nell'ambito di una collaborazione con l'azienda ***Selektra Italia S.r.l.*** per supportare attività congiunte e ottimizzare la gestione e la reportistica delle immagini aziendali.
 
 ## Struttura del documento generato
 
