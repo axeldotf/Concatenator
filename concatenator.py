@@ -26,30 +26,29 @@ def filter_images_by_operator(image_paths):
                 break
     return operators
 
-def create_or_update_document(output_path, section_title, images):
-    """Crea o aggiorna un documento Word con le immagini fornite."""
-    file_path = Path(f"{output_path}.docx")
+def create_or_update_document(file_path, section_title, images):
+    """Aggiunge un blocco di immagini a un documento Word esistente o nuovo."""
+    if not file_path.exists():
+        doc = Document()
+        # Imposta Arial 12 come font di default
+        style = doc.styles["Normal"]
+        style.font.name = "Arial"
+        style.font.size = Pt(12)
+        
+        # Imposta l'orientamento della pagina in orizzontale
+        section = doc.sections[0]
+        section.orientation = WD_ORIENTATION.LANDSCAPE
+        section.page_width, section.page_height = section.page_height, section.page_width
+        
+        doc.save(file_path)
+    else:
+        doc = Document(file_path)
     
-    if file_path.exists():
-        file_path.unlink()
-    
-    doc = Document()
-    
-    # Imposta Arial 12 come font di default
-    style = doc.styles["Normal"]
-    style.font.name = "Arial"
-    style.font.size = Pt(12)
-    
-    # Imposta l'orientamento della pagina in orizzontale
     section = doc.sections[0]
-    section.orientation = WD_ORIENTATION.LANDSCAPE
-    section.page_width, section.page_height = section.page_height, section.page_width
-    
     max_width = (section.page_width - section.left_margin - section.right_margin) / 914400  # Conversione a pollici
     
     doc.add_heading(section_title, level=2).paragraph_format.space_after = Inches(0.2)
     
-    # Mostra la barra di avanzamento
     for image_path in tqdm(images, desc=f"Aggiunta immagini a {section_title}", unit="img", ncols=80, leave=True):  
         try:
             with Image.open(image_path) as img:
@@ -63,10 +62,17 @@ def create_or_update_document(output_path, section_title, images):
             print(f"Errore nell'aggiunta dell'immagine {image_path}: {e}")
     
     doc.save(file_path)
-    return str(file_path)
 
 if __name__ == "__main__":
     document_title = input("Inserisci il titolo del documento: ")
+    output_paths = {}
+    
+    for operator in ["Iliad", "TIM", "VF", "W3"]:
+        file_path = Path(f"{document_title.replace(' ', '_')}_{operator}.docx")
+        if file_path.exists():
+            file_path.unlink()  # Rimuove il file se esiste già
+        output_paths[operator] = file_path
+    
     all_blocks = {}
     
     while True:
@@ -84,19 +90,17 @@ if __name__ == "__main__":
     
     if all_blocks:
         operator_images = filter_images_by_operator(sum(all_blocks.values(), []))
-        output_paths = set()
         
         for operator, images in operator_images.items():
             if images:
-                output_path = f"{document_title.replace(' ', '_')}_{operator}"
-                output_paths.add(Path(f"{output_path}.docx").resolve())
+                file_path = output_paths[operator]
                 for block_title, block_images in all_blocks.items():
                     filtered_images = [img for img in block_images if img in images]
                     if filtered_images:
-                        create_or_update_document(output_path, block_title, filtered_images)
+                        create_or_update_document(file_path, block_title, filtered_images)
         
         print("\nDocumenti Word creati:")
-        for path in output_paths:
-            print(path)
+        for path in output_paths.values():
+            print(path.resolve())
     else:
         print("Nessuna immagine selezionata. Uscita...")
