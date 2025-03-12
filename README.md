@@ -1,56 +1,36 @@
-# Concatenator.py
+# Concatenator
 
-## Descrizione
-`concatenator.py` è un tool sviluppato per automatizzare la creazione di documenti Word contenenti immagini organizzate per operatore. Il programma consente di selezionare immagini dal file system, raggrupparle in blocchi, e generare documenti Word separati per ciascun operatore riconosciuto nei nomi dei file.
+Concatenator è un tool Python progettato per la generazione automatizzata di reportistica di progetto in formato Word (.docx). Il programma permette di selezionare immagini, suddividerle per blocchi tematici e raggrupparle in documenti suddivisi per operatore (Iliad, TIM, Vodafone e Wind3). 
 
-## Funzionalità
-- Selezione interattiva delle immagini tramite interfaccia grafica.
-- Riconoscimento automatico dell'operatore dai nomi dei file.
-- Creazione di documenti Word con orientamento orizzontale.
-- Inserimento di immagini ridimensionate mantenendo le proporzioni.
-- Raggruppamento delle immagini in blocchi definiti dall'utente.
-- Supporto a diversi formati immagine (`.jpg`, `.jpeg`, `.png`, `.bmp`, `.gif`).
+## Funzionalità principali
+- **Selezione delle immagini**: Gli utenti possono selezionare manualmente le immagini da includere nel report.
+- **Filtraggio automatico**: Le immagini vengono automaticamente suddivise per operatore in base al nome del file.
+- **Ritaglio bordi bianchi**: Opzionalmente, le immagini possono essere ritagliate per rimuovere eventuali bordi bianchi.
+- **Creazione documenti Word**: Viene generato un documento per ciascun operatore, con le immagini organizzate per sezioni e formattate correttamente.
+- **Elaborazione multipla**: È possibile inserire più blocchi tematici di immagini all'interno di un unico report.
 
-## Requisiti
-- Python 3.x
-- Librerie richieste:
-  - `python-docx`
-  - `Pillow`
-  - `tkinter`
-  - `tqdm`
+## Installazione
+Per utilizzare Concatenator, è necessario avere Python installato sul proprio sistema insieme alle seguenti librerie:
 
-Puoi installare le dipendenze eseguendo:
 ```sh
 pip install python-docx pillow tqdm
 ```
 
 ## Utilizzo
-1. Avvia il programma eseguendo:
-   ```sh
-   python concatenator.py
-   ```
-2. Inserisci il titolo del documento quando richiesto.
-3. Aggiungi uno o più blocchi di immagini selezionando i file desiderati.
-4. Il programma genererà automaticamente documenti Word separati per ciascun operatore rilevato nei nomi dei file.
+Eseguire il file `concatenator.py` e seguire le istruzioni a schermo:
 
-## Struttura del Codice
-- **`select_images()`**: Apre una finestra di dialogo per la selezione delle immagini.
-- **`filter_images_by_operator()`**: Classifica le immagini in base agli operatori (Iliad, TIM, VF, W3).
-- **`create_or_update_document()`**: Genera o aggiorna un documento Word con le immagini selezionate.
-- **`__main__`**: Gestisce il flusso principale dell'applicazione.
+```sh
+python concatenator.py
+```
 
-## Esempio di Output
-Dopo aver eseguito il programma, verranno generati file Word con nomi del tipo:
-```
-Nome_Documento_Iliad.docx
-Nome_Documento_TIM.docx
-Nome_Documento_VF.docx
-Nome_Documento_W3.docx
-```
-Ciascun file conterrà le immagini raggruppate per operatore.
+1. Inserire il titolo del documento.
+2. Scegliere se ritagliare automaticamente i bordi bianchi dalle immagini.
+3. Selezionare la cartella di destinazione per i documenti generati.
+4. Aggiungere i blocchi di immagini fornendo un titolo per ciascun gruppo.
+5. Il programma genererà i documenti Word per ciascun operatore contenente le immagini organizzate in sezioni.
+
+## Output
+Alla fine del processo, il software creerà file Word separati per ciascun operatore, salvandoli nella cartella selezionata dall'utente.
 
 ## Autori
-Sviluppato da **Alessandro Frullo** in collaborazione con **Selektra Italia Srl**.
-
-## Licenza
-Questo progetto è rilasciato sotto la **Licenza Apache 2.0**. Consulta il file `LICENSE` per maggiori dettagli.
+Questo software è stato sviluppato da **Alessandro Frullo** in collaborazione con l'azienda **Selektra Italia Srl**.
