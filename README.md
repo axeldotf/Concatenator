@@ -1,36 +1,69 @@
-# Concatenator
+# 📑 Concatenator - Report Generator
 
-Concatenator è un tool Python progettato per la generazione automatizzata di reportistica di progetto in formato Word (.docx). Il programma permette di selezionare immagini, suddividerle per blocchi tematici e raggrupparle in documenti suddivisi per operatore (Iliad, TIM, Vodafone e Wind3). 
+**Concatenator** è uno strumento standalone in Python progettato per la **generazione automatizzata di report Word (.docx)** a partire da immagini tematiche. Il tool consente di **raggruppare immagini per blocchi e per operatore telefonico (Iliad, TIM, Vodafone, Wind3)**, con interfaccia grafica intuitiva e opzioni avanzate di personalizzazione.
 
-## Funzionalità principali
-- **Selezione delle immagini**: Gli utenti possono selezionare manualmente le immagini da includere nel report.
-- **Filtraggio automatico**: Le immagini vengono automaticamente suddivise per operatore in base al nome del file.
-- **Ritaglio bordi bianchi**: Opzionalmente, le immagini possono essere ritagliate per rimuovere eventuali bordi bianchi.
-- **Creazione documenti Word**: Viene generato un documento per ciascun operatore, con le immagini organizzate per sezioni e formattate correttamente.
-- **Elaborazione multipla**: È possibile inserire più blocchi tematici di immagini all'interno di un unico report.
+---
 
-## Installazione
-Per utilizzare Concatenator, è necessario avere Python installato sul proprio sistema insieme alle seguenti librerie:
+## 🧩 Funzionalità Principali
 
-```sh
+- **Interfaccia grafica (GUI)**: Applicazione user-friendly basata su Tkinter.
+- **Suddivisione automatica per operatore**: Le immagini vengono assegnate agli operatori in base al nome file.
+- **Blocchi tematici**: Le immagini possono essere organizzate in più blocchi con titoli personalizzati.
+- **Ritaglio intelligente**: Opzioni per rimuovere bordi bianchi *lateralmente*, *verticalmente* o *entrambi*.
+- **Etichettatura opzionale**: Inserimento automatico del nome operatore e tecnologia sopra ogni immagine.
+- **Generazione Word multi-documento**: Un file `.docx` per ogni operatore, con layout ottimizzato e immagini scalate correttamente.
+- **Elaborazione asincrona**: Il tool mantiene responsiva la GUI durante la generazione dei report.
+
+---
+
+## 🖥️ Requisiti
+
+Assicurati di avere Python 3 installato e installa i pacchetti richiesti:
+
+```bash
 pip install python-docx pillow tqdm
-```
+````
 
-## Utilizzo
-Eseguire il file `concatenator.py` e seguire le istruzioni a schermo:
+## ▶️ Utilizzo
 
-```sh
+Posizionati nella directory contenente il file `concatenator.py` e avvia l'applicazione eseguendo il seguente comando da terminale:
+
+```bash
 python concatenator.py
-```
+````
 
-1. Inserire il titolo del documento.
-2. Scegliere se ritagliare automaticamente i bordi bianchi dalle immagini.
-3. Selezionare la cartella di destinazione per i documenti generati.
-4. Aggiungere i blocchi di immagini fornendo un titolo per ciascun gruppo.
-5. Il programma genererà i documenti Word per ciascun operatore contenente le immagini organizzate in sezioni.
+### 🧭 Procedura guidata nell’interfaccia
 
-## Output
-Alla fine del processo, il software creerà file Word separati per ciascun operatore, salvandoli nella cartella selezionata dall'utente.
+1. **Inserisci il titolo del documento**
+2. **Scegli la modalità di ritaglio** delle immagini:
+   - `none`
+   - `sides`
+   - `topbottom`
+   - `both`
+3. **Abilita o disabilita l’etichetta automatica**
+4. **Seleziona la cartella di output**
+5. **Aggiungi uno o più blocchi di immagini** con titolo personalizzato
+6. Premi **“Genera Documenti”** per avviare l’elaborazione
 
-## Autori
-Questo software è stato sviluppato da **Alessandro Frullo** in collaborazione con l'azienda **Selektra Italia Srl**.
+✅ Al termine, nella cartella selezionata troverai **un file Word per ciascun operatore** contenente tutte le immagini raggruppate per blocco.
+
+---
+
+### 🖼️ Output
+
+📁 `TitoloDocumento_Iliad.docx`  
+📁 `TitoloDocumento_TIM.docx`  
+📁 `TitoloDocumento_VF.docx`  
+📁 `TitoloDocumento_W3.docx`
+
+Ogni documento conterrà:
+- Immagini scalate e formattate
+- Opzionalmente ritagliate e con intestazione
+- Ordinamento per tecnologia secondo la sequenza definita in `ORDER`
+
+---
+
+### ✍️ Autore
+
+Sviluppato da **Alessandro Frullo**  
+In collaborazione con **Selektra Italia Srl**
