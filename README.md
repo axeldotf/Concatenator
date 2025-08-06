@@ -63,6 +63,29 @@ Ogni documento conterrà:
 
 ---
 
+## 📦 Creazione dell'eseguibile (EXE)
+
+Per distribuire il tool come applicazione standalone su Windows, puoi generare un eseguibile usando `pyinstaller`. Nel progetto è incluso un file di icona `conc.ico`. Ecco il comando utilizzato:
+
+```bash
+pyinstaller --onefile --windowed --icon=conc.ico concatenator.py \
+  --exclude PyQt5 \
+  --exclude PyQt5.sip \
+  --exclude PyQt5.QtCore
+````
+
+`--onefile`: raggruppa tutto in un singolo file eseguibile.
+
+`--windowed`: disabilita la console a terminale (utilizza solo la GUI).
+
+`--icon=conc.ico`: imposta l'icona dell'applicazione.
+
+`--exclude ...`: esclude moduli non necessari (PyQt5 in questo caso) per ridurre le dimensioni.
+
+Al termine della procedura, nella cartella `dist` troverai `concatenator.exe` pronto per l'uso.
+
+---
+
 ### ✍️ Autore
 
 Sviluppato da **Alessandro Frullo**  
